@@ -1,0 +1,290 @@
+.page { 
+	overflow:hidden;
+}
+.page { 
+	background-color:rgba(255, 255, 255, 1);
+	width:1440px;
+	height:1024px;
+	position:absolute;
+}
+.ongoing_cont { 
+	background-color:rgba(253.93750101327896, 240.20371556282043, 191.5111979842186, 1);
+	width:1189px;
+	height:600px;
+	position:absolute;
+	left:130px;
+	top:302px;
+	border-top-left-radius:53px;
+	border-top-right-radius:53px;
+	border-bottom-left-radius:53px;
+	border-bottom-right-radius:53px;
+}
+.banner { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	width:1440px;
+	height:237px;
+	position:absolute;
+	left:0px;
+	top:0px;
+	background-image:url(ve/banner.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+.logo { 
+	width:198px;
+	height:187px;
+	position:absolute;
+	left:38px;
+	top:50px;
+	border-top-left-radius:46px;
+	border-top-right-radius:46px;
+	border-bottom-left-radius:46px;
+	border-bottom-right-radius:46px;
+	background-image:url(ve/334619451_123195227246301_2336642774933105457_n_removebg_preview_7.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	}
+	.logo:hover{
+		opacity: 50%;
+	}
+.copyright_cont { 
+	background-color:rgba(255, 102.29653760790825, 36.124995946884155, 1);
+	width:1440px;
+	height:76px;
+	position:absolute;
+	left:0px;
+	top:956px;
+}
+.copyright { 
+	color:rgba(255, 255, 255, 1);
+	width:1220px;
+	height:68px;
+	position:absolute;
+	left:110px;
+	top:980px;
+	font-family: 'Exo';
+	text-align:center;
+	font-size:20px;
+	letter-spacing:0;
+}
+.upvisayas { 
+	color:rgba(255, 255, 255, 1);
+	width:399px;
+	height:32px;
+	position:absolute;
+	left:1003px;
+	top:26px;
+	font-family: 'Exo';
+	text-align:left;
+	font-size:24px;
+	letter-spacing:0;
+}
+.ongoing { 
+	color:rgba(0, 0, 0, 1);
+	width:522px;
+	height:77px;
+	position:absolute;
+	left:740px;
+	top:326px;
+	font-family: 'Exo 2';
+	text-align:left;
+	font-size:64px;
+	letter-spacing:0;
+}
+.org4_cont { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(0, 0, 0, 1);
+	width:1081px;
+	height:84px;
+	position:absolute;
+	left:181px;
+	top:785px;
+	border-radius:20px;
+}
+.org4 { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	color:rgba(255, 255, 255, 1);
+	width:150px;
+	height:43px;
+	position:absolute;
+	left:224px;
+	top:808px;
+	font-family: 'Exo';
+	text-align:left;
+	font-size:32px;
+	letter-spacing:0;
+}
+.org3_cont { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(0, 0, 0, 1);
+	width:1081px;
+	height:84px;
+	position:absolute;
+	left:181px;
+	top:680px;
+	border-radius:20px;
+}
+.vote3cont { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(255, 253.93750101327896, 253.93750101327896, 1);
+	width:150px;
+	height:50px;
+	position:absolute;
+	left:1082px;
+	top:700px;
+	border-radius: 25px;
+	font-style: 'Exo 2';
+	font-size: 25px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	color: rgba(94.56250101327896, 94.56250101327896, 94.56250101327896, 1); ;
+	}
+	.vote3cont:hover{
+		background-color: rgba(255, 102.29653760790825, 36.124995946884155, 1);
+		color: white;
+		transform: scale(1.05);
+	}
+.org3 { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	color:rgba(255, 255, 255, 1);
+	width:130px;
+	height:43px;
+	position:absolute;
+	left:224px;
+	top:700px;
+	font-family: 'Exo';
+	text-align:left;
+	font-size:32px;
+	letter-spacing:0;
+}
+.org1_cont { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(0, 0, 0, 1);
+	width:1081px;
+	height:84px;
+	position:absolute;
+	left:182px;
+	top:472px;
+	border-radius:20px;
+}
+.org1 { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	color:rgba(255, 255, 255, 1);
+	width:140px;
+	height:43px;
+	position:absolute;
+	left:216px;
+	top:495px;
+	font-family: 'Exo';
+	text-align:left;
+	font-size:32px;
+	letter-spacing:0;
+}
+.vote1cont {
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color: rgba(255, 253.93750101327896, 253.93750101327896, 1);;
+	width: 150px; /* Increase button width */
+	height: 50px; /* Increase button height */
+	position: absolute;
+	left: 1080px;
+	top: 492px;
+	font-style: 'Exo 2';
+	border-radius: 25px; /* Use shorthand to set border radius */
+	text-align: center; /* Center align text */
+	line-height: 50px; /* Set line-height equal to button height for vertical centering */
+	cursor: pointer; /* Change cursor to pointer on hover */
+	color: rgba(94.56250101327896, 94.56250101327896, 94.56250101327896, 1); 
+	font-size: 25px;
+  }
+  
+  .vote1cont:hover {
+	background-color:rgba(255, 102.29653760790825, 36.124995946884155, 1);
+	color: white;
+	transform: scale(1.05);
+  }
+  
+.org2_cont { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(0, 0, 0, 1);
+	width:1081px;
+	height:84px;
+	position:absolute;
+	left:181px;
+	top:575px;
+	border-radius:20px;
+}
+.org2 { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	color:rgba(255, 255, 255, 1);
+	width:110px;
+	height:43px;
+	position:absolute;
+	left:224px;
+	top:595px;
+	font-family: 'Exo';
+	text-align:left;
+	font-size:32px;
+	letter-spacing:0;
+}
+.vote2cont { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(255, 253.93750101327896, 253.93750101327896, 1);
+	width:150px;
+	height:50px;
+	position:absolute;
+	left:1082px;
+	top:595px;
+	font-style: 'Exo 2';
+	font-size: 25px;
+	border-radius: 25px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	color: rgba(94.56250101327896, 94.56250101327896, 94.56250101327896, 1);
+	}
+	.vote2cont:hover {
+		background-color:rgba(255, 102.29653760790825, 36.124995946884155, 1);
+		color: white;
+		transform: scale(1.05);
+	}
+.vote4cont { 
+	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
+	background-color:rgba(255, 253.93750101327896, 253.93750101327896, 1);
+	width:150px;
+	height:50px;
+	position:absolute;
+	left:1082px;
+	top:802px;
+	border-radius: 25px;
+	font-style: 'Exo 2';
+	font-size: 25px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+	color: rgba(94.56250101327896, 94.56250101327896, 94.56250101327896, 1);
+	}
+	.vote4cont:hover {
+		background-color: rgba(255, 102.29653760790825, 36.124995946884155, 1);
+		color: white;
+		transform: scale(1.05);
+	}
+.back { 
+	width:42px;
+	height:42px;
+	position:absolute;
+	left:1380px;
+	top:260px;
+	background-image:url(ve/image_14.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+	border: none;
+	background-color: white;
+	cursor: pointer;
+	}
+	.back:hover {
+		opacity: 50%;
+	}

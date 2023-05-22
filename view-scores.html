@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="globalcss.css" />
+    <link rel="stylesheet" type="text/css" href="view-scores.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container-center-horizontal">
+      <div class="votingResults">
+        <div class="header">
+            <p id="uni">University of the Philippines Visayas</p>
+            <a href="HomePage.html"><img src="ivIcon.png" id="iv"></a>
+        </div>
+        <div class="content">
+          <div class="dash">
+            <div class="dashRow">
+              <img src="dashIcon.png" id="dash">
+            </div>
+            <a href="Election_settings.html">  <input id="dashItem" type="submit" value="Election Settings"></a>
+            <a href="candidates.html"><input id="dashItem" type="submit" value="Candidates"></a>
+           <a href="VoterSpecified.html"><input id="dashItem" type="submit" value="Voters Specified"> </a> 
+            <input id="dashItem" type="submit" value="View Scores">
+          </div>
+          <div class="results">
+            <div class="resultExit">
+              <a href="adminelection.html" id="return">Return to Elections</a>
+            </div>
+            <div class="scores">
+              <div class="positions" id="positionValue">
+                <select id="pv">
+                  <option value="President">President</option>
+                  <option value="Vice President">Vice President</option>
+                  <option value="Secretary">Secretary</option>
+                </select>
+              </div>
+              <div class="resultGraph">
+                <h3 id="positionLabel"></h3>
+                <canvas id="scoreDisplay"></canvas>
+              </div>
+            </div>
+            <div class="adminReset">
+              <input id="rs" type="submit" value="Reset">
+            </div>
+            <script>
+              document.getElementById("pv").addEventListener("change", graph);
+              document.getElementById("rs").addEventListener("click", reset);
+              var ctx = document.getElementById('scoreDisplay').getContext('2d');
+              var myChart1 = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: ["Elmo", "Big Bird", "Cookie Monster", "Kermit", "Grover"],
+                  datasets: [
+                    {
+                      label: "Total Votes",
+                      data: [237, 211, 400, 159, 20],
+                      backgroundColor: ['#f94144', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b'],
+                    }
+                  ]
+                },
+                options: {
+                  scales: {
+                    yAxes: [
+                      {
+                        ticks: {
+                          beginAtZero: true
+                        }
+                      }
+                    ]
+                  }
+                }
+              });
+
+              function graph(){
+                var pos = document.getElementById("pv").value;
+                var ctx = document.getElementById('scoreDisplay').getContext('2d');
+                if (myChart1) {
+                  myChart1.destroy();
+                }
+                switch(pos){
+                  case "President":
+                    myChart1 = new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                        labels: ["Elmo", "Big Bird", "Cookie Monster", "Kermit", "Grover"],
+                        datasets: [
+                          {
+                            label: "Total Votes",
+                            data: [237, 211, 400, 159, 20],
+                            backgroundColor: ['#f94144', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b'],
+                          }
+                        ]
+                      },
+                      options: {
+                        scales: {
+                          yAxes: [
+                            {
+                              ticks: {
+                                beginAtZero: true
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    });
+                    break;
+                  case "Vice President":
+                    myChart1 = new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                        labels: ["Ernie", "Bert", "Count von Count", "Stinky"],
+                        datasets: [
+                          {
+                            label: "Total Votes",
+                            data: [301, 148, 97, 39, 114],
+                            backgroundColor: ['#f94144', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b'],
+                          }
+                        ]
+                      },
+                      options: {
+                        scales: {
+                          yAxes: [
+                            {
+                              ticks: {
+                                beginAtZero: true
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    });
+                    break;
+                  case "Secretary":
+                    myChart1 = new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                        labels: ["Gonzo", "Fozzie", "Annie", "Scooter", "Statler"],
+                        datasets: [
+                          {
+                            label: "Total Votes",
+                            data: [31, 14, 71, 420, 23],
+                            backgroundColor: ['#f94144', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b'],
+                          }
+                        ]
+                      },
+                      options: {
+                        scales: {
+                          yAxes: [
+                            {
+                              ticks: {
+                                beginAtZero: true
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    });
+                    break;
+                }
+              }
+
+              function reset(){
+                var cleared = [
+                      {
+                        label: "Total Votes",
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: ['#f94144', '#f8961e', '#f9c74f', '#90be6d', '#43aa8b'],
+                      }
+                    ]
+                myChart1.data.datasets = cleared;
+                myChart1.update();
+              }
+          </script>
+          </div>
+        </div>
+        <div class="footer">
+            <p id="copy">Copyright © 2023. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

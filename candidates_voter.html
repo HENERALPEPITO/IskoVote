@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <title>Candidates</title>
+            <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
+
+            <link rel="stylesheet" href="candidates_voter.css">
+            
+            <style>
+              body {background: #E5E5E5; }
+            </style>
+            <script src="candidates_voter.js"></script>
+          </head>
+          
+          <body>
+            <div class=page>
+              <div  class="banner"></div>
+              <div  class="copyrightcont"></div>
+              <span  class="copyright">Copyright © 2023. All Rights Reserved.</span>
+              <span  class="upvisayas">University of the Philippines Visayas</span>
+              <div  class="candidate1cont"></div>
+              <div  class="candidate2cont"></div>
+              <span  class="course2">BS in Tequila II</span>
+              <div  class="candidate3cont"></div>
+              <div  class="candidate4cont"></div>
+              <span  class="course4">BS in Computer Shop II</span>
+              <span  class="course3">BS in Vulcanizing II</span>
+              <span  class="candidate3">GALLEGO</span>
+              <span  class="candidate1">AMODIA</span>
+              <span  class="candidate2">MAGTITE</span>
+              <span  class="candidate4">LOUISE</span>
+              <div  class="dashboardcont"></div>
+              <span  class="user">Hi, Jayvee</span>
+              <div  class="dashboard"></div>
+              <div  class="candidate2img"></div>
+              <span  class="course1">BS in Computer Science II</span>
+              <div  class="userimage"></div>
+              <div  class="candidate3img"></div>
+              <div  class="candidate4img"></div>
+              <div  class="candidate1img"></div>
+            </div>
+            <!-- back button to homepage - insert html file of homepage -->
+            <button onclick="location.href = 'homepage.html';" class="logo" ></button>
+
+            <button onclick="location.href = 'position.html';" class="back"></button>
+
+            <!-- insert js function--charchar lang ni ang function kay-uha lang -->
+            <button type="button" onclick="get_votes()" id="vote1" class="vote1cont">Vote</button>
+            <button type="button" onclick="get_votes()" id="vote2" class="vote2cont">Vote</button>
+            <button type="button" onclick="get_votes()" id="vote3" class="vote3cont">Vote</button>
+            <button type="button" onclick="get_votes()" id="vote4" class="vote4cont">Vote</button>
+
+            <button onclick="location.href = 'position.html';" class="positioncont">Position</button>
+            <button onclick="location.href = 'voting-results.html';" class="resultscont">Voting Results</button>
+            <button onclick="location.href = 'candidates_voter.html';" class="candidatescont">Candidates</button>
+            <script src="candidates_voter.js"></script>
+          </body>
+</html>

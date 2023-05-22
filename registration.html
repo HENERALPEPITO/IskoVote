@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1440, maximum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="globalcss.css" />
+    <link rel="stylesheet" type="text/css" href="registration.css" />
+    <script>
+function attemptRegistration() {
+  // Retrieve input values
+  const name = document.getElementById("regName").value;
+  const middleName = document.getElementById("regMName").value;
+  const surname = document.getElementById("regSName").value;
+  const address = document.getElementById("regAddr").value;
+  const contactNumber = document.getElementById("regCNum").value;
+  const email = document.getElementById("regEmail").value;
+  const password = document.getElementById("regPass").value;
+
+  // Create object to store input values
+  const registrationData = {
+    name: name,
+    middleName: middleName,
+    surname: surname,
+    address: address,
+    contactNumber: contactNumber,
+    email: email,
+    password: password
+  };
+
+  // Log the registrationData object to console
+  console.log(registrationData);
+}
+
+    </script>
+  </head>
+  <body>
+    <div class="container-center-horizontal">
+      <div class="registration">
+        <div class="header">
+            <p id="uni">University of the Philippines Visayas</p>
+            <a href="HomePage.html"><img src="images/logo.png" id="iv"></a>
+        </div>
+        <div class="content">
+            <a href="HomePage.html"><img src="exitIcon.png" id="exit"></a>
+            <img src="createAcc.png" id="ca">
+            <div class="formTwin">
+                <input type="text" id="regName" placeholder="Name">
+                <input type="text" id="regMName" placeholder="Middle Name">
+            </div>
+            <div class="formTwin">
+                <input type="text" id="regSName" placeholder="Surname">
+                <select id="regAddr">
+                    <option value="Luzon">Luzon</option>
+                    <option value="Visayas">Visayas</option>
+                    <option value="China">China</option>
+                    <option value="Mindanao">Mindanao</option>
+                  </select>
+            </div>
+            <div class="formRow">
+                <input type="text" id="regCNum" placeholder="Contact Number">
+                <input type="text" id="regEmail" placeholder="Email">
+                <input type="password" id="regPass" placeholder="Password">
+            </div>
+            <input type="submit" onclick="attemptRegistration()" value="Register">
+            <p>
+                <span>Already have an account?</span>
+                <span><a href="voters-login.html">Log in here</a> instead</span>
+            </p>
+        </div>
+        <div class="footer">
+            <p id="copy">Copyright © 2023. All Rights Reserved.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
