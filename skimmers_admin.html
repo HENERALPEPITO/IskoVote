@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet" />
+    <link href="./css/Election_settings.css" rel="stylesheet" />
+    <title>Election Settings</title>
+  </head>
+  <body>
+    <div class="banner"></div>
+    <div class="v32_81"></div>
+    <div class="sidebar">
+      <button id="ES" onclick="Election_settings()">Election Settings</button>
+      <button id="CD" onclick="Candidates()">Candidates</button>
+      <button id="VS" onclick="VoterSpecified()">Voters Specified</button>
+      <button id="VW" onclick="ViewScores()">View Scores</button>
+      <script>
+        function Election_settings() {
+          location.replace("Election_settings.html");
+        }
+        function Candidates() {
+          location.replace("Candidates.html");
+        }
+        function VoterSpecified() {
+          location.replace("VoterSpecified.html");
+        }
+        function ViewScores() {
+          location.replace("ViewScores.html");
+        }
+      </script>
+    </div>
+    <div class="form-container">
+      <form id="candidateForm" action="election_settings.php" method="POST">
+        <label id="ET">Election title:</label><br>
+            <input type="radio" id="elektrons" name="title" value="elektrons">
+            <input type="radio" id="redbolts" name="title" value="redbolts">
+            <input type="radio" id="clovers" name="title" value="clovers">
+            <input type="radio" id="skimmers" name="title" value="skimmers">
+
+        <label id="DS" for="description">Election description:</label>
+        <textarea id="description" name="description" placeholder="What's on your mind?"></textarea>
+        <label id="ED" for="duration-from">Election duration (From):</label>
+        <input type="date" id="duration-from" name="duration-from" required>
+        <label id="EF" for="duration-to">Election duration (To):</label>
+        <input type="date" id="duration-to" name="duration-to">
+        <label id="upload" for="upload"> Election Banner: </label>
+        <input id="UL" type="file" name="upload">
+        <input id="apply" type="submit" value="Apply">
+      </form>
+      <script>
+        const durationFromInput = document.getElementById('duration-from');
+        const durationToInput = document.getElementById('duration-to');
+        const electionForm = document.getElementById('electionForm');
+
+        // The following code executes when the form is submitted
+        electionForm.addEventListener('submit', (event) => {
+          event.preventDefault(); // prevent form submission
+
+          const durationFromDate = new Date(durationFromInput.value);
+          const formattedDurationFromDate = durationFromDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+
+          const durationToDate = new Date(durationToInput.value);
+          const formattedDurationToDate = durationToDate.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+
+          const electionTitle = document.querySelector('input[name="title"]:checked').value;
+          const electionDescription = document.getElementById('description').value;
+          console.log(`Election title: ${electionTitle}`);
+          console.log(`Election description: ${electionDescription}`);
+          console.log(`Election duration: ${formattedDurationFromDate} - ${formattedDurationToDate}`);
+
+          const formData = new FormData(electionForm); // Create a FormData object with the form data
+
+          // Append the file data separately
+          const fileInput = document.getElementById('UL');
+          const file = fileInput.files[0];
+          formData.append('upload', file);
+
+          // Send the form data to the PHP script using Fetch API
+          fetch('election_settings.php', {
+            method: 'POST',
+            body: formData
+          })
+            .then(response => response.text())
+            .then(data => {
+              console.log(data);
+              // Clear form inputs after successful submission
+              electionForm.reset();
+
+               // Redirect to Candidates.html
+              location.replace("Candidates.html");
+
+              // Handle the response data as needed
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        });
+      </script>
+    </div>
+    <div class="v60_114"></div>
+    <div class="v60_120"></div>
+    <div class="v60_116"></div>
+    <div class="footercolor"></div>
+    <div class="sidecolor"></div>
+    <span class="copyright">
+      Copyright © 2023. All Rights Reserved.
+    </span>
+    <p>
+      <a href="HomePage.html">
+        <img id="logo" src="Images/logo.png">
+      </a>
+    </p>
+    <div class="UPVTitle2"> University of the Philippines Visayas </div> 
+    <div class="v60_118"></div>
+  </body>
+</html>

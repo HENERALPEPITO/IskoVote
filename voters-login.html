@@ -2,36 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
-    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="globalcss.css" />
     <link rel="stylesheet" type="text/css" href="voters-login.css" />
-      
   </head>
   <body>
-    <script >
-
-      function validateLogin() {
-  // Get the email and password entered by the user
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("password").value;
-
-  // Retrieve the email from console
-  const storedEmail = "nice@up.edu.ph";
-
-  // Check if the email and password are correct
-  if (email === storedEmail && password === "password") {
-    // Redirect to voter_elections.html
-    alert("WELCOME TO ISKO VOTE");
-    window.location.href = "voter_elections.html";
-  } else {
-    // Display an error message
-    alert("Invalid email or password. Please try again.");
-  }
-}
-
-</script>
     <div class="container-center-horizontal">
       <div class="login">
         <div class="header">
@@ -39,13 +14,14 @@
             <a href="HomePage.html"><img src="images/logo.png" id="iv"></a>
         </div>
         <div class="content">
-            <div class="loginField"><a href="HomePage.html">
-              <img src="loginAcc.png" id="ac"></a>              
-                <input type="text" id="email" placeholder="Email">
-                <input type="password" id="password" placeholder="Password">
-
-            </div>
-            <input type="submit" onclick="validateLogin()" value="Login">
+            <form action="voters_login.php" method="POST">
+              <div class="loginField"><a href="HomePage.html">
+                <img src="loginAcc.png" id="ac"></a>              
+                <input type="text" id="email" name="email" placeholder="Email">
+                <input type="password" id="password" name="password" placeholder="Password">
+              </div>
+              <input type="submit" value="Login">
+            </form>
         </div>
         <div class="footer">
             <p id="copy">Copyright © 2023. All Rights Reserved.</p>

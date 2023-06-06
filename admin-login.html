@@ -2,38 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
-    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="globalcss.css" />
     <link rel="stylesheet" type="text/css" href="voters-login.css" />
-       <script>
-        function validateLogin() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  // Check if email is admin and password is 1234
-  if (email === "admin@up.edu.ph" && password === "1234") {
-    alert("Login successful!");
-    window.location.href = "Admin_election.html";
-    return;
-  }
-
-  // Check if email and password match any registered user
-  const registrationData = getRegistrationData();
-  for (let i = 0; i < registrationData.length; i++) {
-    const user = registrationData[i];
-    if (user.email === email && user.password === password) {
-      alert("Login successful!");
-      window.location.href = "voter_election.html";
-      return;
-    }
-  }
-
-  alert("Invalid email or password. Please try again.");
-}
-
-    </script>
   </head>
   <body>
     <div class="container-center-horizontal">
@@ -44,12 +15,15 @@
         </div>
         <div class="content">
             <div class="loginField"><a href="HomePage.html">
-              <img src="loginAcc.png" id="ac"></a>              
-                <input type="text" id="email" placeholder="Email">
-                <input type="password" id="password" placeholder="Password">
+              <img src="loginAcc.png" id="ac"></a>
+
+              <form action="admin_login.php" method="POST">              
+                <input type="text" id="email" name="email" placeholder="Email">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <input type="submit" value="Login">
+              </form>
 
             </div>
-            <input type="submit" onclick="validateLogin()" value="Login">
         </div>
         <div class="footer">
             <p id="copy">Copyright © 2023. All Rights Reserved.</p>
