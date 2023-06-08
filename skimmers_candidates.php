@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $yearLevel = $yearLevels[$i];
 
         // Check if a candidate already exists for the given position and year level
-        $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM elektrons_candidates WHERE position = ? AND year_level = ?");
+        $stmt = $conn->prepare("SELECT COUNT(*) AS count FROM skimmers_candidates WHERE position = ? AND year_level = ?");
         $stmt->bind_param("ss", $position, $yearLevel);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Prepare and execute the SQL statement to insert candidate data into the database
-        $stmt = $conn->prepare("INSERT INTO elektrons_candidates (name, position, year_level) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO skimmers_candidates (name, position, year_level) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $name, $position, $yearLevel);
         $stmt->execute();
         $stmt->close();
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Return a response back to the client
-    header("Location: elektrons_view_scores.php");
+    header("skimmers_view_scores.php");
     echo "Candidates saved successfully!";
     exit;
 }
@@ -59,14 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Elektrons Candidates</title>
+    <title>skimmers Candidates</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="globalcss.css" />
-    <link rel="stylesheet" type="text/css" href="elektrons.css" />
+    <link rel="stylesheet" type="text/css" href="skimmers.css" />
 </head>
 <body>
   <div class="header">
@@ -80,13 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <button id="VW" onclick="ViewScores()">View Scores</button>
       <script>
         function Election_settings() {
-          location.replace("elektrons_settings.php");
+          location.replace("skimmers_settings.php");
         }
         function Candidates() {
-          location.replace("elektrons_candidates.php");
+          location.replace("skimmers_candidates.php");
         }
         function ViewScores() {
-          location.replace("elektrons_view_scores.php");
+          location.replace("skimmers_view_scores.php");
         }
       </script>
     </div>
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
         <div class="addCandidateForm">
-          <form id="candidateForm" action="elektrons_candidates.php" method="POST">
+          <form id="candidateForm" action="skimmers_candidates.php" method="POST">
             <div class="field">
               <p>Name</p>
               <input id="canName" type="text" name="candidateName" required />
@@ -219,14 +219,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       // Send the form data to the server using an AJAX request
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "elektrons_candidates.php", true);
+      xhr.open("POST", "skimmers_candidates.php", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
             alert("Candidates saved successfully!");
             list.innerHTML = ""; // Clear the candidate list after saving
-            window.location.replace("elektrons_view_scores.php");
+            window.location.replace("skimmers_view_scores.php");
           }
         }
       };

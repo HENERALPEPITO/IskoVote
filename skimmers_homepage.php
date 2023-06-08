@@ -1,4 +1,4 @@
-<?php
+    <?php
     session_start();
     error_reporting(0); 
 
@@ -56,7 +56,7 @@
     }
 
     // Retrieve the list of year levels
-    $query = "SELECT DISTINCT year_level FROM elektrons_candidates";
+    $query = "SELECT DISTINCT year_level FROM skimmers_candidates";
     $result = $conn->query($query);
 
     if (!$result) {
@@ -66,7 +66,7 @@
     // Retrieve candidates based on the selected year level
     if (isset($_GET['yearLevel'])) {
         $selectedYearLevel = $_GET['yearLevel'];
-        $query = "SELECT * FROM elektrons_candidates WHERE year_level = '$selectedYearLevel'";
+        $query = "SELECT * FROM skimmers_candidates WHERE year_level = '$selectedYearLevel'";
         $candidatesResult = $conn->query($query);
 
         if (!$candidatesResult) {
@@ -77,7 +77,7 @@
     }
 
     // Retrieve the settings data
-    $query = "SELECT * FROM elektrons_settings";
+    $query = "SELECT * FROM skimmers_settings";
     $settingsResult = $conn->query($query);
 
     if (!$settingsResult) {
@@ -89,7 +89,7 @@
     // Retrieve the distinct positions for the selected year level
     if (isset($_GET['yearLevel'])) {
         $selectedYearLevel = $_GET['yearLevel'];
-        $query = "SELECT DISTINCT position FROM elektrons_candidates WHERE year_level = '$selectedYearLevel'";
+        $query = "SELECT DISTINCT position FROM skimmers_candidates WHERE year_level = '$selectedYearLevel'";
         $positionsResult = $conn->query($query);
 
         if (!$positionsResult) {
@@ -113,7 +113,7 @@
             echo "<script>alert('You have already voted for this position.');</script>";
         } else {
             // Update the candidate's score and record the vote
-            $query = "UPDATE elektrons_candidates SET score = score + 1 WHERE id = $selectedCandidateId";
+            $query = "UPDATE skimmers_candidates SET score = score + 1 WHERE id = $selectedCandidateId";
             $conn->query($query);
 
             $query = "INSERT INTO votes (user_id, position) VALUES ($userId, '$selectedPosition')";
@@ -131,13 +131,12 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Elektrons Candidates</title>
+        <title>skimmers Candidates</title>
         <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
-
-        
-    <link href="globalcss.css" rel="stylesheet" />
+        <link href="globalcss.css" rel="stylesheet" />
     <link rel="stylesheet" href="elektrons_homepage.css">
+        <link rel="stylesheet" href="position.css">
     </head>
     <body>
         <div class="page">
@@ -199,4 +198,3 @@
 
     </body>
     </html>
-

@@ -4,12 +4,10 @@
     <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet" />
-    <link href="./css/Election_settings.css" rel="stylesheet" />
+    <link href="Election_settings.css" rel="stylesheet" />
     <title>Election Settings</title>
   </head>
   <body>
-    <div class="banner"></div>
-    <div class="v32_81"></div>
     <div class="sidebar">
       <button id="ES" onclick="Election_settings()">Election Settings</button>
       <button id="CD" onclick="Candidates()">Candidates</button>

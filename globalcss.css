@@ -2,24 +2,65 @@
   box-sizing: border-box;
 }
 
-
-.screen a {
-  display: contents;
-  text-decoration: none;
+body {
+  margin: 0; 
+  background: #ffffff;
+  text-align: center;
+  font-size: 14px;
 }
 
-.container-center-horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  font-family: "Exo", Verdana, sans-serif;
+a:hover {
+  transform: scale(1.25, 1.25);
+}
+
+.header{
+  background-image: url("ivHeader.png");
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
-  pointer-events: none;
+  height: 220px;
+  object-fit: cover;
 }
 
-.container-center-horizontal > * {
-  flex-shrink: 0;
-  pointer-events: auto;
+#uni{
+  font-size: 24px;
+  color: #ffffff;
+  float: right;
+  margin: 25px 25px 0px 0px;
 }
 
+#iv{
+  width: 175px;
+  height: 175px;
+  float: left;
+  margin: 40px 0px 0px 40px;
+}
 
+.nav{
+  text-align: right;
+  font-family: 'Exo';
+  font-weight: regular;
+  font-size: 20px;
+  opacity: 1;
+  padding-right: 20px;
+}
+
+.navigation:link, .navigation:visited {
+  color: black;
+  padding: 15px 25px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.footer{
+  background-color: #ff6624;
+  color: #ffffff;
+  width: 100%;
+  height: 70px;
+  font-size: 20px;
+}
+
+#copy{
+  padding-top: 30px;
+  margin: 0px;
+}

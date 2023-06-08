@@ -1,0 +1,118 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0; 
+  background: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  align-items: flex-start;
+}
+
+.header{
+  background-image: url("ivHeader.png");
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+#uni{
+  font-size: 24px;
+  color: #ffffff;
+  float: right;
+  margin: 25px 25px 0px 0px;
+}
+
+#iv{
+  width: 175px;
+  height: 175px;
+  float: left;
+  margin: 40px 0px 0px 40px;
+}
+
+.content{
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+.sidebar {
+  text-align: center;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 30px;
+}
+
+.sidebar button {
+  width: 100%;
+  background-color: #ff6624;
+  color: #000000;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 30px;
+  border: none;
+  margin: 5px;
+  padding: 20px 30px;
+}
+
+.form-container {
+  width: 70%;
+  background-color: #f2f2f2;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-row{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin: 25px 10px;
+}
+
+.form-row label{
+  width: 30%;
+  font-size: 20px;
+  text-align: left;
+  align-self: start;
+}
+
+.form-row textarea {
+  width: 70%;
+  height: 200px;
+  resize: horizontal;
+  border-radius: 5px;
+}
+
+.form-row input {
+  width: 70%;
+  border-radius: 5px;
+}
+
+#apply{
+  padding: 10px 25px;
+  border-radius: 20px;
+}
+
+.footer{
+  background-color: #ff6624;
+  color: #ffffff;
+  width: 100%;
+  height: 70px;
+  font-size: 20px;
+}
+
+#copy{
+  padding-top: 30px;
+  margin: 0px;
+}
