@@ -1,0 +1,130 @@
+.vote_body{
+    width: 100%;
+    display: flex;
+  }
+  
+  .sidebar {
+    text-align: center;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+  }
+  
+  .sidebar button {
+    width: 100%;
+    background-color: #ff6624;
+    color: #000000;
+    opacity: 0.9;
+    text-align: center;
+    font-size: 30px;
+    border-radius: 25px;
+    border: none;
+    margin: 5px;
+    padding: 20px 30px;
+  }
+  
+  .sidebar button:hover{
+    opacity: 1;
+    border-radius: 30px;
+  }
+  
+  .user{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: #ff6624;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user *{
+    margin: 0px 10px;
+  }
+  
+  .user img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .vote_candidates{
+    text-align: center;
+    width: 70%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .content{
+    display: flex;
+    width: 100%;
+  }
+  
+  .vote_candidates{
+    text-align: center;
+    width: 70%;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .results{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .scores{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .resultExit{
+    width: 100%;
+  }
+  
+  #return{
+    float: right;
+    margin: 10px 40px 0px 0px;
+  }
+  
+  .positions{
+    width: 100%;
+  }
+  
+  .positions select{
+    padding: 0px;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+  }
+  
+  .resultGraph{
+    width: 90%;
+    height: 500px;
+    margin: 20px 0px;
+  }
+  
+  .resultGraph h3{
+    color: #000000;
+  }
+  
+  .adminReset{
+    width: 100%;
+  }
+  
+  #reset{
+    background-color: #000000;
+    color: #ffffff;
+  }
