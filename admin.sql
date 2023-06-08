@@ -5,7 +5,12 @@ CREATE TABLE registration (
   password VARCHAR(50) NOT NULL,
   organization VARCHAR(50) NOT NULL
 );
-
+CREATE TABLE votes (
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  user_id INT(6) UNSIGNED,
+  position VARCHAR(255) NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES registration(id)
+);
 CREATE TABLE elektrons_candidates (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -15,8 +20,6 @@ CREATE TABLE elektrons_candidates (
 );
 
 CREATE TABLE elektrons_settings (
-  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
   description TEXT,
   duration_from DATE NOT NULL,
   duration_to DATE,
@@ -79,3 +82,8 @@ CREATE TABLE admin (
   email VARCHAR(50) NOT NULL,
   password VARCHAR(50) NOT NULL
 );
+CREATE TABLE contacts(
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  message VARCHAR(255) NOT NULL,
+  email VARCHAR(50) NOT NULL);

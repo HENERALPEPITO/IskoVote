@@ -1,11 +1,3 @@
-/* screen - registration */
-
-body{
-  margin: 0; 
-  background: #ffffff;
-  text-align: center;
-}
-
 a{
   color: inherit;
 }
@@ -41,27 +33,6 @@ input[type="submit"]{
   height: 100%;
 }
 
-.header{
-  background-image: url("ivHeader.png");
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-#uni{
-  font-size: 24px;
-  color: #ffffff;
-  float: right;
-  margin: 25px 25px 0px 0px;
-}
-
-#iv{
-  width: 175px;
-  height: 175px;
-  float: left;
-  margin: 40px 0px 0px 40px;
-}
-
 .content{
   display: inline-block;
   object-fit: cover;
@@ -82,24 +53,14 @@ input[type="submit"]{
   margin: 10px 40px 0px 0px;
 }
 
-.formTwin{
-  width: 100%;
-}
-
-.formTwin input{
-  width: 450px;
-  height: 50px;
-  margin: 5px 70px;
-}
-
-.formTwin select{
-  width: 450px;
-  height: 50px;
-  margin: 5px 70px;
-}
-
 .formRow{
   width: 100%;
+}
+
+#regAddr{
+  width: 1045px;
+  height: 50px;
+  margin: 5px 0px;
 }
 
 .formRow input{

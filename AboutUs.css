@@ -1,0 +1,69 @@
+.about{
+  width: 97.5%;
+  display: flex;
+}
+
+.aboutimg{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+}
+
+.row1{
+  width: 100%;
+  justify-content: center;
+}
+
+#r1a{
+  width: 70%;
+  height: auto;
+}
+
+.row2{
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  column-gap: 2.5%;
+}
+
+#r2a{
+  width: 30%;
+  height: auto;
+}
+
+#r2b{
+  width: 30%;
+  height: auto;
+}
+
+#r2c{
+  width: 30%;
+  height: auto;
+}
+
+.aboutspan{
+  width: 30%;
+  text-align: center;
+}
+
+.s{
+  width: 100%;
+  padding: 5% 10%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  font-family: 'Exo 2';
+}
+
+.t{
+  text-align: center;
+  font-weight: 900;
+  font-size: xx-large;
+}
+
+.c{
+  text-align: justify;
+  font-size: medium;
+}
