@@ -14,14 +14,16 @@
             <a href="HomePage.html"><img src="images/logo.png" id="iv"></a>
         </div>
         <div class="content">
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-              <div class="loginField"><a href="HomePage.html">
-                <img src="loginAcc.png" id="ac"></a>              
+            <div class="loginField"><a href="HomePage.html">
+              <img src="loginAcc.png" id="ac"></a>
+
+              <form action="admin_login.php" method="POST">              
                 <input type="text" id="email" name="email" placeholder="Email">
                 <input type="password" id="password" name="password" placeholder="Password">
-              </div>
-              <input type="submit" value="Login">
-            </form>
+                <input type="submit" value="Login">
+              </form>
+
+            </div>
         </div>
         <div class="footer">
             <p id="copy">Copyright © 2023. All Rights Reserved.</p>

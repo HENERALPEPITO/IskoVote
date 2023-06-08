@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0); 
 
 // Check if the user is not logged in
 if (!isset($_SESSION["user_id"])) {
@@ -55,27 +56,47 @@ if ($conn->connect_error) {
 }
 
 // Retrieve the list of year levels
-$query = "SELECT DISTINCT year_level FROM elektrons_candidates";
+$query = "SELECT DISTINCT year_level FROM clovers_candidates";
 $result = $conn->query($query);
+
+if (!$result) {
+    die("Error retrieving year levels: " . $conn->error);
+}
 
 // Retrieve candidates based on the selected year level
 if (isset($_GET['yearLevel'])) {
     $selectedYearLevel = $_GET['yearLevel'];
-    $query = "SELECT * FROM elektrons_candidates WHERE year_level = '$selectedYearLevel'";
+    $query = "SELECT * FROM clovers_candidates WHERE year_level = '$selectedYearLevel'";
     $candidatesResult = $conn->query($query);
+
+    if (!$candidatesResult) {
+        die("Error retrieving candidates: " . $conn->error);
+    }
+
     $candidates = $candidatesResult->fetch_all(MYSQLI_ASSOC);
 }
 
 // Retrieve the settings data
-$query = "SELECT * FROM elektrons_settings";
+$query = "SELECT * FROM clovers_settings";
 $settingsResult = $conn->query($query);
+
+if (!$settingsResult) {
+    die("Error retrieving settings: " . $conn->error);
+}
+
 $settings = $settingsResult->fetch_assoc();
 
 // Retrieve the distinct positions for the selected year level
 if (isset($_GET['yearLevel'])) {
     $selectedYearLevel = $_GET['yearLevel'];
-    $query = "SELECT DISTINCT position FROM elektrons_candidates WHERE year_level = '$selectedYearLevel'";
+    $query = "SELECT DISTINCT position FROM clovers_candidates WHERE year_level = '$selectedYearLevel'";
     $positionsResult = $conn->query($query);
+
+    if (!$positionsResult) {
+        die("Error retrieving positions: " . $conn->error);
+    }
+
+    $positionsResult->data_seek(0); // Reset the cursor position
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['vote'])) {
@@ -83,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['vote'])) {
 
     // Check if the user has already voted for the selected position
     $userId = $_SESSION["user_id"];
-    $selectedPosition = $_GET['position'];
+    $selectedPosition = isset($_GET['position']) ? $_GET['position'] : "";
     $query = "SELECT * FROM votes WHERE user_id = $userId AND position = '$selectedPosition'";
     $result = $conn->query($query);
 
@@ -92,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['vote'])) {
         echo "<script>alert('You have already voted for this position.');</script>";
     } else {
         // Update the candidate's score and record the vote
-        $query = "UPDATE elektrons_candidates SET score = score + 1 WHERE id = $selectedCandidateId";
+        $query = "UPDATE clovers_candidates SET score = score + 1 WHERE id = $selectedCandidateId";
         $conn->query($query);
 
         $query = "INSERT INTO votes (user_id, position) VALUES ($userId, '$selectedPosition')";
@@ -104,80 +125,95 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['vote'])) {
     }
 }
 
-
 $conn->close();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Elektrons Candidates</title>
+    <title>Clovers Candidates</title>
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="position.css">
+    <link href="globalcss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="clovers_homepage.css">
 </head>
 <body>
-    <div class="page">
-        <div class="banner"></div>
-        <div class="dashboard_cont">
-            <h1>Welcome, <?php echo isset($name) ? $name : "Unknown"; ?>!</h1>
-
-            <?php if (!isset($_GET['yearLevel']) && $result->num_rows > 0) { ?>
-                <h3>Select Year Level:</h3>
+    <div class="header">
+		<p id="uni">University of the Philippines Visayas</p>
+		<a href="HomePage.html"><img src="images/logo.png" id="iv"></a>
+	</div>
+    <div class="vote_body">
+        <div class="sidebar">
+            <div class="user">
+                <img id="uimg" src="user.png">
+                <h1>Welcome, <?php echo isset($name) ? htmlspecialchars($name) : "Unknown"; ?>!</h1>
+            </div>
+            <button id="CD" onclick="Candidates()">Candidates</button>
+            <button id="VW" onclick="ViewScores()">View Scores</button>
+            <script>
+                function Candidates() {
+                    location.replace("clovers_homepage.php");
+                }
+                function ViewScores() {
+                    location.replace("clovers_voting_results.php");
+                }
+            </script>
+        </div>
+        <div class="vote_candidates">
+            <div class="settings_display">
+                <?php if (isset($settings)) { ?>
+                    <p id="highlight">Election Details</p>
+                    <p>Description: <?php echo isset($settings['description']) ? $settings['description'] : ""; ?></p>
+                    <p>Duration: From <?php echo isset($settings['duration_from']) ? $settings['duration_from'] : ""; ?> to <?php echo isset($settings['duration_to']) ? $settings['duration_to'] : ""; ?></p>
+                <?php } else { ?>
+                    <p>No settings available</p>
+                <?php } ?>
+            </div>
+            <div class="cand_yr">
                 <form method="GET" action="">
                     <?php
-                    // Display year level buttons
                     while ($row = $result->fetch_assoc()) {
                         $yearLevel = $row['year_level'];
                         echo "<button type='submit' name='yearLevel' value='$yearLevel'>$yearLevel</button>";
                     }
                     ?>
                 </form>
-            <?php } ?>
-
-            <?php if (isset($_GET['yearLevel']) && isset($positionsResult) && $positionsResult->num_rows > 0) { ?>
-                <h3>Select Position:</h3>
-                <form method="GET" action="">
-                    <input type="hidden" name="yearLevel" value="<?php echo $selectedYearLevel; ?>">
-                    <?php while ($row = $positionsResult->fetch_assoc()) { ?>
-                        <?php $position = $row['position']; ?>
-                        <button type="submit" name="position" value="<?php echo $position; ?>"><?php echo $position; ?></button>
-                    <?php } ?>
-                </form>
-            <?php } ?>
-
-            <?php if (isset($_GET['position']) && isset($candidates)) { ?>
-                <?php $selectedPosition = $_GET['position']; ?>
-                <h3>Candidates for Position: <?php echo $selectedPosition; ?></h3>
-                <ul>
-                    <?php foreach ($candidates as $candidate) { ?>
-                        <?php if ($candidate['position'] === $selectedPosition) { ?>
-                            <li>
-                                <?php echo $candidate['name']; ?>
-                                <form method="POST" action="">
-                                    <input type="hidden" name="candidate_id" value="<?php echo $candidate['id']; ?>">
-                                    <button type="submit" name="vote">Vote</button>
-                                </form>
-                            </li>
+            </div>
+            <div class="cand_pos">
+                <?php if (isset($_GET['yearLevel']) && isset($positionsResult) && $positionsResult->num_rows > 0) { ?>
+                    <h3>Select Position:</h3>
+                    <form method="GET" action="">
+                        <input type="hidden" name="yearLevel" value="<?php echo $selectedYearLevel; ?>">
+                        <?php while ($row = $positionsResult->fetch_assoc()) { ?>
+                            <?php $position = $row['position']; ?>
+                            <button type="submit" name="position" value="<?php echo $position; ?>"><?php echo $position; ?></button>
                         <?php } ?>
+                    </form>
+                <?php } ?>
+            </div>
+            <div class="cand_name">
+                <?php if (isset($_GET['position']) && isset($candidates)) { ?>
+                    <?php $selectedPosition = $_GET['position']; ?>
+                    <h3>Candidates for Position: <?php echo $selectedPosition; ?></h3>
+                    <span>
+                        <?php foreach ($candidates as $candidate) { ?>
+                            <?php if ($candidate['position'] === $selectedPosition) { ?>
+                                <p>
+                                    <?php echo $candidate['name']; ?>
+                                    <form method="POST" action="">
+                                        <input type="hidden" name="candidate_id" value="<?php echo $candidate['id']; ?>">
+                                        <button type="submit" name="vote">Vote</button>
+                                    </form>
+                                </p>
+                            <?php } ?>
                     <?php } ?>
-                </ul>
-            <?php } ?>
+                    </span>
+                <?php } ?>
+            </div>
         </div>
-        <div class="user_img"></div>
-        <div class="dashboard_icon"></div>
     </div>
-
-   <div class="top-right" style="position: relative; z-index: 9999;">
-    <?php if (isset($settings)) { ?>
-        <p>Settings:</p>
-        <p style="color: black;">Description: <?php echo $settings['description']; ?></p>
-        <p style="color: black;">Duration: <?php echo $settings['duration_from']; ?> - <?php echo $settings['duration_to']; ?></p>
-    <?php } else { ?>
-        <p>No settings available</p>
-    <?php } ?>
-</div>
-
+    <div class="footer">
+		<p id="copy">Copyright © 2023. All Rights Reserved.</p>
+	</div>
 </body>
 </html>

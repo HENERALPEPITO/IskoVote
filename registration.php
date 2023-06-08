@@ -22,52 +22,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Store the registration data in the database
-    $sql = "INSERT INTO registration (name, email, password, organization)
-        VALUES ('$name', '$email', '$password', '$address')"; // Use $address instead of $organization
+    // Check if the email already exists in the database
+    $checkEmailQuery = "SELECT * FROM registration WHERE email = '$email'";
+    $checkEmailResult = $conn->query($checkEmailQuery);
 
-    if ($conn->query($sql) === true) {
-        // Retrieve the user ID of the registered user
-        $user_id = $conn->insert_id;
-
-        // Set the user ID in the session
-        $_SESSION["user_id"] = $user_id;
-        $_SESSION["user_name"] = $name; // Add this line to store the user's name in the session
-
-        // Show alert message
-        echo "<script>alert('Registered account!');</script>";
-
-        // Reset the form values
-        echo "<script>
-            document.getElementById('regName').value = '';
-            document.getElementById('regAddr').value = 'ELEKTRONS';
-            document.getElementById('regEmail').value = '';
-            document.getElementById('regPass').value = '';
-        </script>";
-
-        // Redirect to the respective homepage based on the organization
-        switch ($address) {
-            case "ELEKTRONS":
-                header("Location: elektrons_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
-                break;
-            case "SKIMMERS":
-                header("Location: skimmers_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
-                break;
-            case "CLOVERS":
-                header("Location: clovers_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
-                break;
-            case "REDBOLTS":
-                header("Location: redbolts_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
-                break;
-            default:
-                // Redirect to a default homepage if organization not found
-                header("Location:HomePage.html");
-                break;
-        }
-
-        exit();
+    if ($checkEmailResult->num_rows > 0) {
+        // Email already exists, show alert message
+        echo "<script>alert('Email already exists. Please choose a different email.');</script>";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Email is unique, store the registration data in the database
+        $sql = "INSERT INTO registration (name, email, password, organization)
+            VALUES ('$name', '$email', '$password', '$address')";
+
+        if ($conn->query($sql) === true) {
+            // Retrieve the user ID of the registered user
+            $user_id = $conn->insert_id;
+
+            // Set the user ID in the session
+            $_SESSION["user_id"] = $user_id;
+            $_SESSION["user_name"] = $name; // Add this line to store the user's name in the session
+
+            // Show alert message
+            echo "<script>alert('Registered account!');</script>";
+
+            // Reset the form values
+            echo "<script>
+                document.getElementById('regName').value = '';
+                document.getElementById('regAddr').value = 'ELEKTRONS';
+                document.getElementById('regEmail').value = '';
+                document.getElementById('regPass').value = '';
+            </script>";
+
+            // Redirect to the respective homepage based on the organization
+            switch ($address) {
+                case "ELEKTRONS":
+                    header("Location: elektrons_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
+                    break;
+                case "SKIMMERS":
+                    header("Location: skimmers_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
+                    break;
+                case "CLOVERS":
+                    header("Location: clovers_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
+                    break;
+                case "REDBOLTS":
+                    header("Location: redbolts_homepage.php?name=" . urlencode($name)); // Pass the user's name as a parameter
+                    break;
+                default:
+                    // Redirect to a default homepage if organization not found
+                    header("Location:HomePage.html");
+                    break;
+            }
+
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
 }
 

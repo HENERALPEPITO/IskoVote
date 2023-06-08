@@ -46,6 +46,13 @@ input[type="submit"]{
   margin-top: 30px;
 }
 
+form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
 .loginField{
   width: 100%;
   display: flex;
@@ -53,10 +60,21 @@ input[type="submit"]{
 }
 
 .loginField input{
-  width: 70%;
+  width: 50%;
   height: 50px;
   align-self: center;
   margin: 7.5px 0px;
+}
+
+.loginField input[type="submit"]{
+  width: 10%;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.loginField input[type="submit"]:hover{
+  transform: scale(1.1);
+  background-color: #FFC700;
 }
 
 .loginField a:hover{

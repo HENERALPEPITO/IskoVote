@@ -82,7 +82,7 @@ $conn->close();
                         // Generate a button per year level
                         $uniqueYearLevels = array_unique($yearLevels);
                         foreach ($uniqueYearLevels as $yearLevel) {
-                            echo '<button class="yearLevelButton" onclick="displayGraph(\'' . $yearLevel . '\')">' . $yearLevel . '</button>';
+                            echo '<button class="yearLevelButton"  onclick="displayGraph(\'' . $yearLevel . '\')">' . $yearLevel . '</button>';
                         }
                         ?>
                     </div>
@@ -91,9 +91,39 @@ $conn->close();
                         <canvas id="scoreDisplay"></canvas>
                     </div>
                 </div>
-                <div class="adminReset">
-                    <input id="rs" type="submit" value="Reset">
-                </div>
+                <script>
+        // Retrieve the canvas element and create a bar chart
+        var ctx = document.getElementById("scoreDisplay").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($names); ?>,
+                datasets: [{
+                    label: 'Scores',
+                    data: <?php echo json_encode($scores); ?>,
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 206, 86, 0.2)'], // Add more colors if needed
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)'], // Add more colors if needed
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+</script>
             </div>
         </div>
         <div class="footer">

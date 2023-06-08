@@ -1,4 +1,4 @@
- <?php
+<?php
 // Connect to the database
 $servername = "localhost";
 $username = "root";
@@ -12,8 +12,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Retrieve data from the elektrons_candidates table
-$sql = "SELECT year_level, position, score, name FROM elektrons_candidates";
+// Retrieve data from the redbolts_candidates table
+$sql = "SELECT year_level, position, score, name FROM redbolts_candidates";
 $result = $conn->query($sql);
 
 $yearLevels = array();         // Array to store year levels
@@ -41,11 +41,10 @@ $conn->close();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1440, maximum-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="globalcss.css" />
-    <link rel="stylesheet" type="text/css" href="view-scores.css" />
+    <link rel="stylesheet" type="text/css" href="redbolts_homepage.css" />
     <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet" />
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -56,14 +55,24 @@ $conn->close();
             <a href="HomePage.html"><img src="ivIcon.png" id="iv"></a>
         </div>
         <div class="content">
-            <div class="dash">
-                <a href="elektrons_settings.php">  <input id="dashItem" type="submit" value="Election Settings"></a>
-                <a href="elektrons_candidates.php"><input id="dashItem" type="submit" value="Candidates"></a>
-                <input id="dashItem" type="submit" value="View Scores">
+            <div class="sidebar">
+                <div class="user">
+                    <h1>Current Scores</h1>
+                </div>
+                <button id="CD" onclick="Candidates()">Candidates</button>
+                <button id="VW" onclick="ViewScores()">View Scores</button>
+                <script>
+                    function Candidates() {
+                        location.replace("redbolts_homepage.php");
+                    }
+                    function ViewScores() {
+                        location.replace("redbolts_voting_results.php");
+                    }
+                </script>
             </div>
             <div class="results">
                 <div class="resultExit">
-                    <a href="admin_election.html" id="return">Return to Elections</a>
+                    <a href="redbolts_homepage.php" id="return">Return to Elections</a>
                 </div>
                 <div class="scores">
                     <div class="yearLevels" id="yearLevelButtons">
@@ -80,9 +89,6 @@ $conn->close();
                         <canvas id="scoreDisplay"></canvas>
                     </div>
                 </div>
-                <div class="adminReset">
-                    <input id="rs" type="submit" value="Reset">
-                </div>
             </div>
         </div>
         <div class="footer">
@@ -92,37 +98,37 @@ $conn->close();
 </div>
 
 <script>
-    // Retrieve the canvas element and create a bar chart
-    var ctx = document.getElementById("scoreDisplay").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: <?php echo json_encode($names); ?>,
-            datasets: [{
-                label: 'Scores',
-                data: <?php echo json_encode($scores); ?>,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    grid: {
-                        display: false
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        stepSize: 1
+        // Retrieve the canvas element and create a bar chart
+        var ctx = document.getElementById("scoreDisplay").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($names); ?>,
+                datasets: [{
+                    label: 'Scores',
+                    data: <?php echo json_encode($scores); ?>,
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)', 'rgba(255, 206, 86, 0.2)'], // Add more colors if needed
+                    borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)', 'rgba(255, 206, 86, 1)'], // Add more colors if needed
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
                     }
                 }
             }
-        }
-    });
+        });
 
     // Function to display the graph for a specific year level
     function displayGraph(yearLevel) {

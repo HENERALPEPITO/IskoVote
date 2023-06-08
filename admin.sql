@@ -31,7 +31,7 @@ CREATE TABLE skimmers_candidates (
   name VARCHAR(255) NOT NULL,
   position VARCHAR(255) NOT NULL,
   year_level VARCHAR(255) NOT NULL,
-  score INT(6) UNSIGNED
+  score INT(6) UNSIGNED 
 );
 
 CREATE TABLE skimmers_settings (
@@ -87,3 +87,8 @@ CREATE TABLE contacts(
   name VARCHAR(255) NOT NULL,
   message VARCHAR(255) NOT NULL,
   email VARCHAR(50) NOT NULL);
+
+
+ALTER TABLE registration
+ADD CONSTRAINT unique_email UNIQUE (email);
+

@@ -162,9 +162,9 @@ $conn->close();
         <div class="vote_candidates">
             <div class="settings_display">
                 <?php if (isset($settings)) { ?>
-                    <p>Settings</p>
+                    <p id="highlight">Election Details</p>
                     <p>Description: <?php echo isset($settings['description']) ? $settings['description'] : ""; ?></p>
-                    <p>Duration: <?php echo isset($settings['duration_from']) ? $settings['duration_from'] : ""; ?> to <?php echo isset($settings['duration_to']) ? $settings['duration_to'] : ""; ?></p>
+                    <p>Duration: From <?php echo isset($settings['duration_from']) ? $settings['duration_from'] : ""; ?> to <?php echo isset($settings['duration_to']) ? $settings['duration_to'] : ""; ?></p>
                 <?php } else { ?>
                     <p>No settings available</p>
                 <?php } ?>
@@ -195,19 +195,19 @@ $conn->close();
                 <?php if (isset($_GET['position']) && isset($candidates)) { ?>
                     <?php $selectedPosition = $_GET['position']; ?>
                     <h3>Candidates for Position: <?php echo $selectedPosition; ?></h3>
-                    <ul>
+                    <span>
                         <?php foreach ($candidates as $candidate) { ?>
                             <?php if ($candidate['position'] === $selectedPosition) { ?>
-                                <li>
+                                <p>
                                     <?php echo $candidate['name']; ?>
                                     <form method="POST" action="">
                                         <input type="hidden" name="candidate_id" value="<?php echo $candidate['id']; ?>">
                                         <button type="submit" name="vote">Vote</button>
                                     </form>
-                                </li>
+                                </p>
                             <?php } ?>
-                        <?php } ?>
-                    </ul>
+                    <?php } ?>
+                    </span>
                 <?php } ?>
             </div>
         </div>
