@@ -1,5 +1,7 @@
 **IskoVote** 
 
+![Uploading logo iskovote.png…]()
+
 Overview
 
 Welcome to IskoVote, your go-to platform for online voting and elections! 
