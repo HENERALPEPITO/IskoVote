@@ -1,6 +1,5 @@
 **IskoVote** 
 
-![Uploading logo iskovote.png…]()
 
 Overview
 
